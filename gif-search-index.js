@@ -6,9 +6,9 @@ const port = 3000;
 
 app.get('/gif', (req, res) => {
   let query = req.query;
-  let item = query.search;
+  let items = Object.values(query);
   let apiKey = 'bh9XoPmSxq8G94wQUNX2vvTb4vuePoNo';
-  let url = `http://api.giphy.com/v1/gifs/search?q=${item}&api_key=${apiKey}&limit=2`;
+  let url = `http://api.giphy.com/v1/gifs/search?q=${items[0]}&api_key=${apiKey}&limit=2`;
   let images = [];
 
   axios
@@ -21,7 +21,7 @@ app.get('/gif', (req, res) => {
   .catch(res => {
     console.log('error', res);
   })
-  
+
 })
 
 app.listen(port, ()=> {
