@@ -14,18 +14,15 @@ app.get('/gif', (req, res) => {
   axios
   .get(url)
   .then(res => {
-    let arrObj = res.data;
+    let arrObj = res.data.data;
     arrObj.forEach(el => images.push(el.url));
   })
+  .then(()=> res.send(images))
   .catch(res => {
     console.log('error', res);
   })
-
-  console.log(images);
-  res.send(images);
-
+  
 })
-
 
 app.listen(port, ()=> {
   console.log(`Listening to port ${port}`);
